@@ -13,9 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 8f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-    public float xOffset = -.2f;
+    public float xOffset = 0f;
     public float yOffset = -1.1f;
-    public float zOffset = 0f;
+    public float zOffset = -0.5f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -52,14 +52,42 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Idle", false);
         }
-        //animator.SetFloat("Speed", move.magnitude);
 
         if (Input.GetButtonDown("Jump") && isGrounded) 
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             animator.SetBool("Jump", true);
-        } 
+        }
+
+        float moveForward = Input.GetAxisRaw("Vertical");
+        float strafe = Input.GetAxisRaw("Horizontal");
         
+        if (moveForward > 0)
+        {
+            animator.SetFloat("ForwardSpeed", 1f); 
+        }
+        else if (moveForward < 0)
+        {
+            animator.SetFloat("BackwardSpeed", 1f);
+        }
+        else
+        {
+            animator.SetFloat("ForwardSpeed", 0f);
+            animator.SetFloat("BackwardSpeed", 0f);
+        }
+        if (strafe < 0)
+        {
+            animator.SetFloat("LeftSpeed", 1f);
+        }
+        else if (strafe > 0)
+        {
+            animator.SetFloat("RightSpeed", 1f);
+        }
+        else
+        {
+            animator.SetFloat("LeftSpeed", 0f);
+            animator.SetFloat("RightSpeed", 0f);
+        }
 
         velocity.y += gravity * Time.deltaTime;
 
@@ -67,12 +95,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (dummyModel != null)
         {
-            // Adjust the Y and Z positions
-            float adjustedX = transform.position.x + xOffset;
-            float adjustedY = transform.position.y + yOffset;
-            float adjustedZ = transform.position.z + zOffset;
+            // Define local space offset values
+            Vector3 localOffset = new Vector3(xOffset, yOffset, zOffset);
 
-            dummyModel.position = new Vector3(adjustedX, adjustedY, adjustedZ);
+            // Convert the local offset to world space
+            Vector3 adjustedPosition = transform.TransformPoint(localOffset);
+
+            // Apply the adjusted position to the dummy model
+            dummyModel.position = adjustedPosition;
         }
+
     }
 }
