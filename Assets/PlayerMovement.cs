@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float xOffset = 0f;
-    public float yOffset = -1.1f;
-    public float zOffset = -0.5f;
+    public float yOffset = -1.35f;
+    public float zOffset = -0.6f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
