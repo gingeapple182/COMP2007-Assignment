@@ -20,16 +20,19 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask assetMask;
 
     Vector3 velocity;
     bool isGrounded;
+    bool onAsset;
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        onAsset = Physics.CheckSphere(groundCheck.position, groundDistance, assetMask);
         
-        if (isGrounded && velocity.y <0)
+        if ((isGrounded || onAsset) && velocity.y <0)
         {
             velocity.y = -2f;
             animator.SetBool("Jump", false);
@@ -53,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Idle", false);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded) 
+        if (Input.GetButtonDown("Jump") && (isGrounded || onAsset)) 
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             animator.SetBool("Jump", true);
