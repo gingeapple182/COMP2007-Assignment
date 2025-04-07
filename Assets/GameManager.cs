@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public void AddItem(string itemName)
     {
         inventory.Add(itemName);
+        Debug.Log("Item added to inventory: " + itemName);
     }
 
     public bool HasItem(string itemName)

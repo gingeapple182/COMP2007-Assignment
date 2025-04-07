@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Keycard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string keycardName = "Keycard";
+    
+    private void OnMouseDown()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!GameManager.Instance.HasItem(keycardName))
+        {
+            GameManager.Instance.AddItem(keycardName);
+            Debug.Log("Keycard picked up");
+            Destroy(gameObject);
+        }
     }
 }
