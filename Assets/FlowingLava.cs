@@ -26,4 +26,16 @@ public class FlowingLava : MonoBehaviour
 
         transform.position += Vector3.up * risingSpeed * Time.deltaTime;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerMovement player = other.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.Die();
+            }
+        }
+    }
 }
