@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class FlowingLava : MonoBehaviour
 {
+    [Header("Texture scrolling stuff")]
     public float scrollSpeed = 0.2f; // Adjust for faster/slower flow
     private Renderer lavaRenderer;
     private Vector2 textureOffset;
 
+    [Header("Rising lava stuff")]
+    public float risingSpeed = 0.0f;
+
     void Start()
     {
-        // Get the material's renderer component
         lavaRenderer = GetComponent<Renderer>();
-
-        // Ensure initial offset starts at (0,0)
         textureOffset = Vector2.zero;
     }
 
     void Update()
     {
-        // Scroll the texture over time
+        // Scroll the texture
         textureOffset.x += scrollSpeed * Time.deltaTime;
-
-        // Apply the new offset to the material
         lavaRenderer.material.mainTextureOffset = textureOffset;
+
+        transform.position += Vector3.up * risingSpeed * Time.deltaTime;
     }
 }
