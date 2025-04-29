@@ -11,11 +11,16 @@ public class FlowingLava : MonoBehaviour
 
     [Header("Rising lava stuff")]
     public float risingSpeed = 0.0f;
+    public float delayLower;
+    public float delayHigher;
+
+    private bool canRise = false;
 
     void Start()
     {
         lavaRenderer = GetComponent<Renderer>();
         textureOffset = Vector2.zero;
+        StartCoroutine(StartLavaRising());
     }
 
     void Update()
@@ -24,7 +29,18 @@ public class FlowingLava : MonoBehaviour
         textureOffset.x += scrollSpeed * Time.deltaTime;
         lavaRenderer.material.mainTextureOffset = textureOffset;
 
-        transform.position += Vector3.up * risingSpeed * Time.deltaTime;
+        if (canRise)
+        {
+            transform.position += Vector3.up * risingSpeed * Time.deltaTime;
+        }
+    }
+
+    private IEnumerator StartLavaRising()
+    {
+        float delay = Random.Range(delayLower, delayHigher);
+        yield return new WaitForSeconds(delay);
+
+        canRise = true;
     }
 
     private void OnTriggerEnter(Collider other)
