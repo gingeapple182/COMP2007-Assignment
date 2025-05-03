@@ -17,9 +17,9 @@
 ## Development Details  
 - **Engine:** Unity  
 - **Camera Perspective:** First-Person  
-- **3D Models:** Created using Blender and/or Unity Store.  
+- **3D Models:** Created using Probuilder and/or Unity Store.  
 - **Shaders:** Unity’s standard shaders.  
-- **Audio & Music:** Free resources (credited in this README once added).  
+- **Audio & Music:** Free resources (credited in this README).  
 
 ## Planned Features (Stretch Goals)  
 - Lava dynamically rising and falling.  
@@ -28,7 +28,10 @@
 - **NPC Hazards** – Avoid **Roombas patrolling** certain areas.  
 
 ## Credits & Assets  
-- **Sound FX & Music:** _(To be added - include links to free resources used)_  
+- **Sound FX & Music:** 
+  - https://freesound.org/people/Fission9/sounds/474849/
+  - https://freesound.org/people/smcameron/sounds/51429/ 
+  - https://freesound.org/people/thanvannispen/sounds/9432/
 - **3D Models & Textures:** _(Specify sources or self-created)_  
 
 ## Installation & Play Instructions  
