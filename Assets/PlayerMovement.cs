@@ -27,7 +27,19 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     bool onAsset;
 
-    // Update is called once per frame
+    public AudioClip deathSound;
+    public float DeathVolume = 0.5f;
+    private AudioSource audioSource;
+
+    public float delay;
+
+    private bool Dying = false;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -42,9 +54,11 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
-
+        if (!Dying)
+        {
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * speed * Time.deltaTime);
+        }
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
@@ -66,32 +80,36 @@ public class PlayerMovement : MonoBehaviour
         float moveForward = Input.GetAxisRaw("Vertical");
         float strafe = Input.GetAxisRaw("Horizontal");
         
-        if (moveForward > 0)
+        if (!Dying)
         {
-            animator.SetFloat("ForwardSpeed", 1f); 
+            if (moveForward > 0)
+            {
+                animator.SetFloat("ForwardSpeed", 1f); 
+            }
+            else if (moveForward < 0)
+            {
+                animator.SetFloat("BackwardSpeed", 1f);
+            }
+            else
+            {
+                animator.SetFloat("ForwardSpeed", 0f);
+                animator.SetFloat("BackwardSpeed", 0f);
+            }
+            if (strafe < 0)
+            {
+                animator.SetFloat("LeftSpeed", 1f);
+            }
+            else if (strafe > 0)
+            {
+                animator.SetFloat("RightSpeed", 1f);
+            }
+            else
+            {
+                animator.SetFloat("LeftSpeed", 0f);
+                animator.SetFloat("RightSpeed", 0f);
+            }
         }
-        else if (moveForward < 0)
-        {
-            animator.SetFloat("BackwardSpeed", 1f);
-        }
-        else
-        {
-            animator.SetFloat("ForwardSpeed", 0f);
-            animator.SetFloat("BackwardSpeed", 0f);
-        }
-        if (strafe < 0)
-        {
-            animator.SetFloat("LeftSpeed", 1f);
-        }
-        else if (strafe > 0)
-        {
-            animator.SetFloat("RightSpeed", 1f);
-        }
-        else
-        {
-            animator.SetFloat("LeftSpeed", 0f);
-            animator.SetFloat("RightSpeed", 0f);
-        }
+        
 
         velocity.y += gravity * Time.deltaTime;
 
@@ -111,8 +129,23 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private IEnumerator ResetLevel()
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound, DeathVolume);
+        }
+        else
+        {
+            Debug.LogWarning("Missing AudioSource or DeathSound on player.");
+        }
+        Dying = true;
+        StartCoroutine(ResetLevel());
     }
 }
