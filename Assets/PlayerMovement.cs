@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool Dying = false;
 
+    public DeathScreen deathScreen;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -132,7 +134,8 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ResetLevel()
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Die()
@@ -146,6 +149,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogWarning("Missing AudioSource or DeathSound on player.");
         }
         Dying = true;
-        StartCoroutine(ResetLevel());
+        deathScreen.ShowDeathScreen();
+        //StartCoroutine(ResetLevel());
     }
 }
