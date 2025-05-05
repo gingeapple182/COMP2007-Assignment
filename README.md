@@ -32,6 +32,8 @@
   - https://freesound.org/people/Fission9/sounds/474849/
   - https://freesound.org/people/smcameron/sounds/51429/ 
   - https://freesound.org/people/thanvannispen/sounds/9432/
+- **Font**
+  - https://www.dafont.com/basica-industrial.font
 - **3D Models & Textures:** _(Specify sources or self-created)_  
 
 ## Installation & Play Instructions  

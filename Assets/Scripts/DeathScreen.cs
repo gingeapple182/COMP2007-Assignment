@@ -15,6 +15,8 @@ public class DeathScreen : MonoBehaviour
     public void ShowDeathScreen()
     {
         deathScreenUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameManager.Instance.SetGameState(GameState.Dead);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -22,7 +24,7 @@ public class DeathScreen : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
+    
     public void MainMenu()
     {
         return;
