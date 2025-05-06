@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuUI;
     public GameObject pauseMenuUI;
     public GameObject deathScreenUI;
+    public GameObject endScreenUI;
+
     IEnumerator Start()
     {
         yield return null;
@@ -20,11 +22,12 @@ public class MainMenu : MonoBehaviour
         mainMenuUI.SetActive(true);
         pauseMenuUI.SetActive(false);
         deathScreenUI.SetActive(false);
-
+        endScreenUI.SetActive(false);
     }
 
     public void PlayGame()
     {
+        Debug.Log("PLAY BUTTON CLICKED");
         Time.timeScale = 1f; //start the game
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
