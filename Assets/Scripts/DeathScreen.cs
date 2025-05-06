@@ -22,6 +22,8 @@ public class DeathScreen : MonoBehaviour
     }
     public void RestartGame()
     {
+        Time.timeScale = 1f;
+        GameManager.Instance.SetGameState(GameState.Menu);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     

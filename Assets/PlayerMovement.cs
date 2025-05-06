@@ -134,8 +134,6 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ResetLevel()
     {
         yield return new WaitForSeconds(delay);
-        
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Die()
@@ -150,6 +148,5 @@ public class PlayerMovement : MonoBehaviour
         }
         Dying = true;
         deathScreen.ShowDeathScreen();
-        //StartCoroutine(ResetLevel());
     }
 }
