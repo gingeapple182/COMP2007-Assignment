@@ -7,7 +7,8 @@ public enum GameState
     Playing,
     Paused,
     Dead,
-    Menu
+    Menu,
+    Complete
 }
 
 public class GameManager : MonoBehaviour
