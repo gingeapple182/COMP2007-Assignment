@@ -3,7 +3,7 @@
 # The Floor is Lava 🌋🔥  
 
 ## Project Overview  
-**The Floor is Lava** is a first-person platformer where you play as a kid trying to reach safety while avoiding the deadly lava covering the floor. You must carefully navigate the environment, jumping between safe zones and collecting keys to unlock new areas. The game introduces interactive elements like temporary floating objects and movable obstacles.  
+**The Floor is Lava** is a first-person platformer where you are trying to escape a factory after a volcano erruption causing it to fill with lava. Can you escape before it reaches you or will you be caught out when the floor becomes lava?  
 
 ## Gameplay Features  
 - **First-Person Movement** – Navigate the world using keyboard and mouse controls.  
@@ -34,12 +34,21 @@
   - https://freesound.org/people/thanvannispen/sounds/9432/
 - **Font**
   - https://www.dafont.com/basica-industrial.font
-- **3D Models & Textures:** _(Specify sources or self-created)_  
+- **3D Models & Textures:** 
+  - https://assetstore.unity.com/packages/3d/animations/basic-motions-free-154271
+  - https://assetstore.unity.com/packages/vfx/shaders/free-lava-shader-292492
+  - https://assetstore.unity.com/packages/3d/props/industrial/industrial-models-171071
+  - https://assetstore.unity.com/packages/3d/props/industrial/industry-props-217923
+  - https://assetstore.unity.com/packages/3d/props/electronics/keypad-free-262151
+  - https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808
+  - https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633
+  - https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-construction-kit-modular-159280
+  - https://assetstore.unity.com/packages/3d/props/metal-door-5397
 
 ## Installation & Play Instructions  
 1. Download the project from GitHub.  
-2. Open it in Unity (recommended version: **[Your Unity Version]**).  
-3. Press **Play** in the Unity Editor to test.  
+2. Open it in Unity (recommended version: **[Unity 2021.2.8f1]**).  
+3. Press **Play** in the Unity Editor to test.
 
 ## Itch.io Page  
-_(Link to be added once published)_  
+https://gingeapple182.itch.io/the-floor-is-lava  
